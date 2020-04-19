@@ -1,6 +1,11 @@
 #tag Class
 Protected Class App
 Inherits Application
+	#tag Property, Flags = &h0
+		Shared Token As String
+	#tag EndProperty
+
+
 	#tag Constant, Name = API, Type = String, Dynamic = False, Default = \"http://localhost:3000", Scope = Public
 	#tag EndConstant
 

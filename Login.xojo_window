@@ -322,19 +322,29 @@ End
 	#tag Event
 		Sub Action()
 		  Var content As String
-		  MessageBox(App.API + "/ping")
-		  content = MyConn.SendSync("GET", "https://coronavirus-tracker-api.herokuapp.com/v2/locations", 15)
-		  MessageBox(content)
-		  Var outputFile As FolderItem = SpecialFolder.Documents.Child("data.json")
-		  Var t As TextOutputStream
-		  Try
-		    t = TextOutputStream.Open(outputFile)
-		    t.Write(ConvertEncoding(content, Encodings.UTF8))
-		    t.Close
-		  Catch e As IOException
-		    MessageBox("Error accessing file.")
-		  End Try
-		  outputFile.Open()
+		  Var url As String = App.API + "/api/v1/user/login"
+		  
+		  Var json As New JSONItem
+		  json.Value("email") = EmailText.Value
+		  json.Value("password") = PasswordText.Value
+		  
+		  MyConn.SetRequestContent(json.ToString, "application/json")
+		  content = MyConn.SendSync("POST", url, 15)
+		  
+		  Var resp As new JSONItem(content)
+		  
+		  
+		  if InStr(content, "token") = 0 then
+		    MessageBox("Error, user not found, or Invalid credentials")
+		  Else
+		    Var token As String = resp.value("token")
+		    MessageBox(token)
+		    App.Token = token
+		    Login.Close
+		    LoggedIn.Show
+		  End if
+		  
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
