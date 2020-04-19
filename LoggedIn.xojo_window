@@ -351,7 +351,7 @@ End
 		Sub Open()
 		  MenuBar1.Enable
 		  
-		  MessageBox("Welcome User. The left pane shows item requets made by you. The right pane shows requests made by others. To help others out, simply double click on their request. In addition, you can also make a new request. Registering for updates will make sure that you get a call from us every day for staying up to date with the latest news.")
+		  MessageBox("Welcome User. The left pane shows item requests made by you. The right pane shows requests made by others. To help others out, simply double click on their request. In addition, you can also make a new request. Registering for updates will make sure that you get a call from us every day for staying up to date with the latest news.")
 		End Sub
 	#tag EndEvent
 
