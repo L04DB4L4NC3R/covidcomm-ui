@@ -11,6 +11,7 @@ Window=News;News.xojo_window;&h000000004A80BFFF;&h0000000000000000;false
 Window=NewsURLWindow;NewsURLWindow.xojo_window;&h00000000141A37FF;&h0000000000000000;false
 Window=WorldStatus;WorldStatus.xojo_window;&h000000003BA67FFF;&h0000000000000000;false
 Window=LoggedIn;LoggedIn.xojo_window;&h0000000063CE8FFF;&h0000000000000000;false
+MenuBar=MenuBar1;MenuBar1.xojo_menu;&h00000000495497FF;&h0000000000000000;false
 DefaultWindow=Login
 AppMenuBar=MainMenuBar
 MajorVersion=1

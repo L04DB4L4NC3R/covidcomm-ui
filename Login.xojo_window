@@ -316,6 +316,13 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Open()
+		  MenuBar1.Enable
+		End Sub
+	#tag EndEvent
+
+
 #tag EndWindowCode
 
 #tag Events LoginButton
@@ -338,7 +345,6 @@ End
 		    MessageBox("Error, user not found, or Invalid credentials")
 		  Else
 		    Var token As String = resp.value("token")
-		    MessageBox(token)
 		    App.Token = token
 		    Login.Close
 		    LoggedIn.Show
