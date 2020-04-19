@@ -10,7 +10,7 @@ Begin Window Login
    HasFullScreenButton=   False
    HasMaximizeButton=   True
    HasMinimizeButton=   True
-   Height          =   400
+   Height          =   544
    ImplicitInstance=   True
    MacProcID       =   0
    MaximumHeight   =   32000
@@ -23,7 +23,7 @@ Begin Window Login
    Title           =   "Login"
    Type            =   "0"
    Visible         =   True
-   Width           =   600
+   Width           =   1126
    Begin TextField EmailText
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
@@ -39,7 +39,7 @@ Begin Window Login
       FontUnit        =   0
       Format          =   ""
       HasBorder       =   True
-      Height          =   42
+      Height          =   52
       Hint            =   "Enter your email address"
       Index           =   -2147483648
       Italic          =   False
@@ -48,7 +48,7 @@ Begin Window Login
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
-      LockTop         =   True
+      LockTop         =   False
       MaximumCharactersAllowed=   100
       Password        =   False
       ReadOnly        =   False
@@ -59,13 +59,13 @@ Begin Window Login
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   245
+      Top             =   300
       Transparent     =   False
       Underline       =   False
       ValidationMask  =   ""
       Value           =   ""
       Visible         =   True
-      Width           =   254
+      Width           =   780
    End
    Begin TextField PasswordText
       AllowAutoDeactivate=   True
@@ -82,7 +82,7 @@ Begin Window Login
       FontUnit        =   0
       Format          =   ""
       HasBorder       =   True
-      Height          =   41
+      Height          =   51
       Hint            =   "Enter your password"
       Index           =   -2147483648
       Italic          =   False
@@ -91,7 +91,7 @@ Begin Window Login
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
-      LockTop         =   True
+      LockTop         =   False
       MaximumCharactersAllowed=   0
       Password        =   True
       ReadOnly        =   False
@@ -102,13 +102,13 @@ Begin Window Login
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       Tooltip         =   ""
-      Top             =   294
+      Top             =   428
       Transparent     =   False
       Underline       =   False
       ValidationMask  =   ""
       Value           =   ""
       Visible         =   True
-      Width           =   254
+      Width           =   780
    End
    Begin PushButton LoginButton
       AllowAutoDeactivate=   True
@@ -128,15 +128,15 @@ Begin Window Login
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
+      LockRight       =   False
+      LockTop         =   False
       MacButtonStyle  =   "0"
       Scope           =   0
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   347
+      Top             =   491
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -156,19 +156,19 @@ Begin Window Login
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   321
+      Left            =   847
       LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   True
+      LockLeft        =   False
       LockRight       =   True
-      LockTop         =   True
+      LockTop         =   False
       MacButtonStyle  =   "0"
       Scope           =   0
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   347
+      Top             =   491
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -177,12 +177,12 @@ Begin Window Login
    Begin ImageWell LogoCanvas
       AllowAutoDeactivate=   True
       Enabled         =   True
-      Height          =   203
+      Height          =   213
       Image           =   394330111
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   75
-      LockBottom      =   True
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
@@ -195,7 +195,7 @@ Begin Window Login
       Top             =   20
       Transparent     =   False
       Visible         =   True
-      Width           =   449
+      Width           =   975
    End
    Begin URLConnection MyConn
       AllowCertificateValidation=   False
@@ -204,6 +204,81 @@ Begin Window Login
       LockedInPosition=   False
       Scope           =   0
       TabPanelIndex   =   0
+   End
+   Begin TextField PhoneText
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF00
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Format          =   ""
+      HasBorder       =   True
+      Height          =   52
+      Hint            =   "Enter phone number with extention"
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   173
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MaximumCharactersAllowed=   0
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextAlignment   =   "0"
+      TextColor       =   &c00000000
+      Tooltip         =   ""
+      Top             =   364
+      Transparent     =   False
+      Underline       =   False
+      ValidationMask  =   ""
+      Value           =   ""
+      Visible         =   True
+      Width           =   780
+   End
+   Begin PushButton NewsButton
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "View latest COVID-19 News"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   33
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   446
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      MacButtonStyle  =   "0"
+      Scope           =   0
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   491
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   234
    End
 End
 #tag EndWindow
@@ -228,6 +303,21 @@ End
 		    MessageBox("Error accessing file.")
 		  End Try
 		  outputFile.Open()
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events SignupButton
+	#tag Event
+		Sub Action()
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events NewsButton
+	#tag Event
+		Sub Action()
+		  News.Show
+		  MessageBox("Double click on any row to view the full news")
 		End Sub
 	#tag EndEvent
 #tag EndEvents
