@@ -262,7 +262,7 @@ Begin Window Login
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   446
+      Left            =   355
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -278,7 +278,39 @@ Begin Window Login
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   234
+      Width           =   203
+   End
+   Begin PushButton WorldStatusButton
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "View latest world status"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   33
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   592
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      MacButtonStyle  =   "0"
+      Scope           =   0
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   491
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   198
    End
 End
 #tag EndWindow
@@ -318,6 +350,13 @@ End
 		Sub Action()
 		  News.Show
 		  MessageBox("Double click on any row to view the full news")
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events WorldStatusButton
+	#tag Event
+		Sub Action()
+		  WorldStatus.Show
 		End Sub
 	#tag EndEvent
 #tag EndEvents

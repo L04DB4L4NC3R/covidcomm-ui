@@ -1,8 +1,8 @@
 #tag Window
-Begin Window News
+Begin Window WorldStatus
    Backdrop        =   0
    BackgroundColor =   &cFFFFFF00
-   Composite       =   True
+   Composite       =   False
    DefaultLocation =   "0"
    FullScreen      =   False
    HasBackgroundColor=   False
@@ -10,7 +10,7 @@ Begin Window News
    HasFullScreenButton=   False
    HasMaximizeButton=   True
    HasMinimizeButton=   True
-   Height          =   592
+   Height          =   820
    ImplicitInstance=   True
    MacProcID       =   0
    MaximumHeight   =   32000
@@ -20,65 +20,63 @@ Begin Window News
    MinimumHeight   =   64
    MinimumWidth    =   64
    Resizeable      =   True
-   Title           =   "COVID-19 News"
+   Title           =   "World Status"
    Type            =   "0"
    Visible         =   True
-   Width           =   1030
-   Begin Listbox NewsListBox
+   Width           =   1316
+   Begin Listbox WorldStatusListBox
       AllowAutoDeactivate=   True
       AllowAutoHideScrollbars=   True
-      AllowExpandableRows=   True
+      AllowExpandableRows=   False
       AllowFocusRing  =   True
-      AllowResizableColumns=   True
-      AllowRowDragging=   True
-      AllowRowReordering=   True
+      AllowResizableColumns=   False
+      AllowRowDragging=   False
+      AllowRowReordering=   False
       Bold            =   False
-      ColumnCount     =   2
-      ColumnWidths    =   "80%"
+      ColumnCount     =   8
+      ColumnWidths    =   ""
       DataField       =   ""
       DataSource      =   ""
-      DefaultRowHeight=   100
+      DefaultRowHeight=   50
       DropIndicatorVisible=   False
       Enabled         =   True
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
       GridLinesHorizontalStyle=   "3"
-      GridLinesVerticalStyle=   "0"
-      HasBorder       =   False
+      GridLinesVerticalStyle=   "2"
+      HasBorder       =   True
       HasHeader       =   True
-      HasHorizontalScrollbar=   True
+      HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
       HeadingIndex    =   -1
-      Height          =   574
+      Height          =   780
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "Title	URL"
+      InitialValue    =   "Country	Total Cases	Cases Today	Total Deaths	Deaths Today 	Recovered	Active Cases	Critical Cases"
       Italic          =   False
-      Left            =   11
+      Left            =   20
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      RequiresSelection=   True
-      RowSelectionType=   "1"
+      RequiresSelection=   False
+      RowSelectionType=   "0"
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   10
+      Top             =   20
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   1019
+      Width           =   1276
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin URLConnection NewsConn
-      AllowCertificateValidation=   False
-      Enabled         =   True
+   Begin URLConnection WorldStatusConn
       HTTPStatusCode  =   0
       Index           =   -2147483648
       LockedInPosition=   False
@@ -90,17 +88,18 @@ End
 
 #tag WindowCode
 	#tag Event
-		Sub Activate()
+		Sub Open()
 		  var content as string
-		  content = NewsConn.SendSync("GET", "https://corona-stats.online/updates?format=json", 15)
-		  Dim results as new JSONItem(content)
+		  content = WorldStatusConn.SendSync("GET", "https://corona-stats.online?format=json", 20)
+		  Dim info as new JSONItem(content)
 		  
+		  dim results as JSONItem = info.child("data")
 		  dim n as JSONItem
 		  dim i as integer
 		  
 		  for i = 0 to results.count-1
 		    n = results.child(i)
-		    NewsListBox.AddRow(n.value("description"), n.value("url"))
+		    WorldStatusListBox.AddRow(n.value("country"), n.value("cases"), n.value("todayCases"), n.value("deaths"), n.value("todayDeaths"), n.value("recovered"), n.value("active"), n.value("critical"))
 		  next
 		  
 		  
@@ -110,12 +109,3 @@ End
 
 #tag EndWindowCode
 
-#tag Events NewsListBox
-	#tag Event
-		Sub DoubleClick()
-		  NewsURLWindow.Show
-		  NewsURLWindow.NewsSite.LoadURL(Me.CellValueAt(1, 1))
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
