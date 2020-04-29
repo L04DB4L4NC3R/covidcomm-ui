@@ -372,8 +372,6 @@ End
 		  content = MyConn.SendSync("POST", url, 15)
 		  
 		  Var resp As new JSONItem(content)
-		  
-		  MessageBox(content)
 		  if InStr(content, "token") = 0 then
 		    MessageBox("Error, user not found, or Invalid credentials")
 		  Else
