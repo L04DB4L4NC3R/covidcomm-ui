@@ -380,6 +380,7 @@ End
 		  var cnt as string
 		  Conn.RequestHeader("Authorization") = App.Token
 		  cnt = Conn.SendSync("GET", "https://covidcomm.herokuapp.com/api/v1/user/viewallrequests", 15)
+		  MessageBox(cnt)
 		  Dim res as new JSONItem(cnt)
 		  
 		  for i = 0 to res.count-1

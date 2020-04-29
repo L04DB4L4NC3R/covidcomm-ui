@@ -100,6 +100,8 @@ Begin Window VerifyPhoneNumber
       Width           =   146
    End
    Begin URLConnection Conn
+      AllowCertificateValidation=   False
+      Enabled         =   True
       HTTPStatusCode  =   0
       Index           =   -2147483648
       LockedInPosition=   False

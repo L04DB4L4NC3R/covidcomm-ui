@@ -340,7 +340,6 @@ End
 		  
 		  Var resp As new JSONItem(content)
 		  
-		  
 		  if InStr(content, "token") = 0 then
 		    MessageBox("Error, user not found, or Invalid credentials")
 		  Else
