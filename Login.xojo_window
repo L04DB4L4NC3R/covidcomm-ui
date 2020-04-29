@@ -199,6 +199,7 @@ Begin Window Login
    End
    Begin URLConnection MyConn
       AllowCertificateValidation=   False
+      Enabled         =   True
       HTTPStatusCode  =   0
       Index           =   -2147483648
       LockedInPosition=   False
@@ -357,6 +358,31 @@ End
 #tag Events SignupButton
 	#tag Event
 		Sub Action()
+		  Var content As String
+		  Var url As String = App.API + "/api/v1/user/signup"
+		  
+		  Var json As New JSONItem
+		  json.Value("email") = EmailText.Value
+		  json.Value("password") = PasswordText.Value
+		  json.Value("phone_number") = PhoneText.Value
+		  json.Value("latitude") = 0
+		  json.Value("longitude") = 0
+		  
+		  MyConn.SetRequestContent(json.ToString, "application/json")
+		  content = MyConn.SendSync("POST", url, 15)
+		  
+		  Var resp As new JSONItem(content)
+		  
+		  MessageBox(content)
+		  if InStr(content, "token") = 0 then
+		    MessageBox("Error, user not found, or Invalid credentials")
+		  Else
+		    Var token As String = resp.value("token")
+		    App.Token = token
+		    Login.Close
+		    LoggedIn.Show
+		  End if
+		  
 		  
 		End Sub
 	#tag EndEvent

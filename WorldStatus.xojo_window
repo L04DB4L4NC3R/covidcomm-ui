@@ -77,6 +77,8 @@ Begin Window WorldStatus
       _ScrollWidth    =   -1
    End
    Begin URLConnection WorldStatusConn
+      AllowCertificateValidation=   False
+      Enabled         =   True
       HTTPStatusCode  =   0
       Index           =   -2147483648
       LockedInPosition=   False

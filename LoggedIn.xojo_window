@@ -201,7 +201,7 @@ Begin Window LoggedIn
       Height          =   524
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "Requester	Item	Quaantity	Made At"
+      InitialValue    =   "Request ID	Item	Quantity	Made At"
       Italic          =   False
       Left            =   665
       LockBottom      =   False
@@ -343,6 +343,14 @@ Begin Window LoggedIn
       Visible         =   True
       Width           =   199
    End
+   Begin URLConnection Conn
+      AllowCertificateValidation=   False
+      HTTPStatusCode  =   0
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
 End
 #tag EndWindow
 
@@ -352,6 +360,32 @@ End
 		  MenuBar1.Enable
 		  
 		  MessageBox("Welcome User. The left pane shows item requests made by you. The right pane shows requests made by others. To help others out, simply double click on their request. In addition, you can also make a new request. Registering for updates will make sure that you get a call from us every day for staying up to date with the latest news.")
+		  
+		  // to populate user requests
+		  var content as string
+		  Conn.RequestHeader("Authorization") = App.Token
+		  content = Conn.SendSync("GET", "https://covidcomm.herokuapp.com/api/v1/user/viewrequests", 15)
+		  Dim results as new JSONItem(content)
+		  
+		  dim n as JSONItem
+		  dim i as integer
+		  
+		  for i = 0 to results.count-1
+		    n = results.child(i)
+		    Requests.AddRow(n.value("item"), n.value("qty"), n.value("madeAt"), n.value("fulfilled"), n.value("respondeeID"))
+		  next
+		  
+		  
+		  // to populate all requests
+		  var cnt as string
+		  Conn.RequestHeader("Authorization") = App.Token
+		  cnt = Conn.SendSync("GET", "https://covidcomm.herokuapp.com/api/v1/user/viewallrequests", 15)
+		  Dim res as new JSONItem(cnt)
+		  
+		  for i = 0 to res.count-1
+		    n = res.child(i)
+		    OtherRequests.AddRow(n.value("_id"), n.value("item"), n.value("qty"), n.value("madeAt"))
+		  next
 		End Sub
 	#tag EndEvent
 
@@ -370,6 +404,115 @@ End
 	#tag Event
 		Sub Action()
 		  WorldStatus.Show
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Requests
+	#tag Event
+		Sub DoubleClick()
+		  // to populate all requests
+		  
+		  Var json As New JSONItem
+		  json.Value("respondee_id") = Me.CellValueAt(Me.SelectedRowIndex, 4)
+		  Conn.SetRequestContent(json.ToString, "application/json")
+		  var cnt as string
+		  Conn.RequestHeader("Authorization") = App.Token
+		  cnt = Conn.SendSync("POST", "https://covidcomm.herokuapp.com/api/v1/user/find", 15)
+		  Dim res as new JSONItem(cnt)
+		  
+		  if InStr(cnt, "email") = 0 then
+		    MessageBox("Request Failed")
+		  Else
+		    MessageBox(res.value("email") + " | " + res.value("phoneNumber"))
+		  End if
+		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events RequestButton
+	#tag Event
+		Sub Action()
+		  // to populate all requests
+		  
+		  Var json As New JSONItem
+		  json.Value("item") = ItemInput.Value
+		  json.Value("qty") = QtyInput.Value
+		  
+		  Conn.SetRequestContent(json.ToString, "application/json")
+		  var cnt as string
+		  Conn.RequestHeader("Authorization") = App.Token
+		  cnt = Conn.SendSync("POST", "https://covidcomm.herokuapp.com/api/v1/user/request", 15)
+		  Dim res as new JSONItem(cnt)
+		  
+		  if InStr(cnt, "_id") = 0 then
+		    MessageBox("Request Failed")
+		  Else
+		    MessageBox("Request Submitted!")
+		    
+		    var content as string
+		    Conn.RequestHeader("Authorization") = App.Token
+		    content = Conn.SendSync("GET", "https://covidcomm.herokuapp.com/api/v1/user/viewrequests", 15)
+		    Dim results as new JSONItem(content)
+		    
+		    dim n as JSONItem
+		    dim i as integer
+		    Requests.RemoveAllRows()
+		    for i = 0 to results.count-1
+		      n = results.child(i)
+		      Requests.AddRow(n.value("item"), n.value("qty"), n.value("madeAt"), n.value("fulfilled"), n.value("respondeeID"))
+		    next
+		    
+		  End if
+		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events OtherRequests
+	#tag Event
+		Sub DoubleClick()
+		  // to populate all requests
+		  
+		  Var json As New JSONItem
+		  json.Value("request_id") = Me.SelectedRowValue()
+		  Conn.SetRequestContent(json.ToString, "application/json")
+		  var cnt as string
+		  Conn.RequestHeader("Authorization") = App.Token
+		  cnt = Conn.SendSync("POST", "https://covidcomm.herokuapp.com/api/v1/user/respond", 15)
+		  Dim res as new JSONItem(cnt)
+		  
+		  if InStr(cnt, "_id") = 0 then
+		    MessageBox("Request Failed")
+		  Else
+		    MessageBox("Response Submitted!")
+		    
+		    var content as string
+		    Conn.RequestHeader("Authorization") = App.Token
+		    content = Conn.SendSync("GET", "https://covidcomm.herokuapp.com/api/v1/user/viewallrequests", 15)
+		    Dim results as new JSONItem(content)
+		    
+		    dim n as JSONItem
+		    dim i as integer
+		    OtherRequests.RemoveAllRows()
+		    for i = 0 to results.count-1
+		      n = results.child(i)
+		      OtherRequests.AddRow(n.value("_id"), n.value("item"), n.value("qty"), n.value("madeAt"))
+		    next
+		    
+		    Conn.RequestHeader("Authorization") = App.Token
+		    content = Conn.SendSync("GET", "https://covidcomm.herokuapp.com/api/v1/user/viewrequests", 15)
+		    Dim r as new JSONItem(content)
+		    
+		    Requests.RemoveAllRows()
+		    for i = 0 to r.count-1
+		      n = r.child(i)
+		      Requests.AddRow(n.value("item"), n.value("qty"), n.value("madeAt"), n.value("fulfilled"), n.value("respondeeID"))
+		    next
+		    
+		  End if
+		  
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

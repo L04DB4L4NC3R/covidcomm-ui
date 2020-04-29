@@ -6,7 +6,7 @@ Inherits Application
 	#tag EndProperty
 
 
-	#tag Constant, Name = API, Type = String, Dynamic = False, Default = \"http://localhost:3000", Scope = Public
+	#tag Constant, Name = API, Type = String, Dynamic = False, Default = \"https://covidcomm.herokuapp.com", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = kEditClear, Type = String, Dynamic = False, Default = \"&Delete", Scope = Public
