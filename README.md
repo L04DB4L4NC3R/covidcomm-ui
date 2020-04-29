@@ -57,10 +57,12 @@ Head over to the [releases](https://github.com/L04DB4L4NC3R/covidcomm-ui/release
 
 To start contributing, simply create a feature or a contrib branch and send a pull request. Open the CovidComm.xojo_project in your XOJO IDE to get started.
 
-<p align="center">
-Made with :heart: by [Angad Sharma](https://github.com/L04DB4L4NC3R)
-</p>
+---
 
 ## Licence
 
 [MIT](./LICENCE)
+
+---
+
+Made with :heart: by [Angad Sharma](https://github.com/L04DB4L4NC3R)
