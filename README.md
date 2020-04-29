@@ -13,7 +13,7 @@ This is a desktop application for the covidcomm project.
   * [Linux Release](https://github.com/L04DB4L4NC3R/covidcomm-ui/releases/download/v1.0/Linux.64.bit.tar.xz)
   * [WIndows Release](https://github.com/L04DB4L4NC3R/covidcomm-ui/releases/download/v1.0/Windows.zip)
 * [Backend Repository](https://github.com/L04DB4L4NC3R/covidcomm)
-* [View the Related Blog]()
+* [View the Related Blog](https://dev.to/l04db4l4nc3r/twilio-dev-hackathon-project-2c9o)
 * [Contributing](#contributing)
 * [Licence](#licence)
 
@@ -61,8 +61,7 @@ To start contributing, simply create a feature or a contrib branch and send a pu
 
 ## Licence
 
-[MIT](./LICENCE)
+[MIT](https://github.com/L04DB4L4NC3R/covidcomm-ui/blob/master/LICENSE)
 
----
 
 Made with :heart: by [Angad Sharma](https://github.com/L04DB4L4NC3R)
