@@ -114,7 +114,7 @@ End
 	#tag Event
 		Sub DoubleClick()
 		  NewsURLWindow.Show
-		  NewsURLWindow.NewsSite.LoadURL(Me.CellValueAt(1, 1))
+		  NewsURLWindow.NewsSite.LoadURL( Me.CellValueAt(Me.SelectedRowIndex, 1))
 		  
 		End Sub
 	#tag EndEvent

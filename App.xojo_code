@@ -2,6 +2,10 @@
 Protected Class App
 Inherits Application
 	#tag Property, Flags = &h0
+		Shared PhoneNumber As string
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		Shared Token As String
 	#tag EndProperty
 

@@ -316,7 +316,7 @@ Begin Window LoggedIn
       Format          =   ""
       HasBorder       =   True
       Height          =   49
-      Hint            =   "Enter Request Quantity"
+      Hint            =   "Kg, L or Units"
       Index           =   -2147483648
       Italic          =   False
       Left            =   288
@@ -413,6 +413,11 @@ End
 		  // to populate all requests
 		  
 		  Var json As New JSONItem
+		  
+		  if Me.CellValueAt(Me.SelectedRowIndex, 4) = ""  then
+		    MessageBox("No respondee yet")
+		    return
+		  End if
 		  json.Value("respondee_id") = Me.CellValueAt(Me.SelectedRowIndex, 4)
 		  Conn.SetRequestContent(json.ToString, "application/json")
 		  var cnt as string
@@ -510,6 +515,25 @@ End
 		      Requests.AddRow(n.value("item"), n.value("qty"), n.value("madeAt"), n.value("fulfilled"), n.value("respondeeID"))
 		    next
 		    
+		  End if
+		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Reg
+	#tag Event
+		Sub Action()
+		  var cnt as string
+		  Conn.RequestHeader("Authorization") = App.Token
+		  cnt = Conn.SendSync("PUT", "https://covidcomm.herokuapp.com/api/v1/user/subscribe", 15)
+		  Dim res as new JSONItem(cnt)
+		  
+		  if InStr(cnt, "sid") = 0 then
+		    MessageBox("Request Failed")
+		  Else
+		    MessageBox("Subscribed. We have sent an OTP to your registered mobile number for phone verification.")
+		    VerifyPhoneNumber.Show
 		  End if
 		  
 		  

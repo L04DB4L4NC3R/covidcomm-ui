@@ -199,7 +199,6 @@ Begin Window Login
    End
    Begin URLConnection MyConn
       AllowCertificateValidation=   False
-      Enabled         =   True
       HTTPStatusCode  =   0
       Index           =   -2147483648
       LockedInPosition=   False
@@ -347,6 +346,7 @@ End
 		  Else
 		    Var token As String = resp.value("token")
 		    App.Token = token
+		    App.PhoneNumber = resp.value("phoneNumber")
 		    Login.Close
 		    LoggedIn.Show
 		  End if
@@ -379,6 +379,7 @@ End
 		  Else
 		    Var token As String = resp.value("token")
 		    App.Token = token
+		    App.PhoneNumber = resp.value("phoneNumber")
 		    Login.Close
 		    LoggedIn.Show
 		  End if
