@@ -7,7 +7,7 @@ This is a desktop application for the covidcomm project.
 ## Index 
 
 * [Features](#features)
-* [Demo](#Demo)
+* [Demo](#demo)
 * [Installation](#installation)
   * [MAC OS Release](https://github.com/L04DB4L4NC3R/covidcomm-ui/releases/download/v1.0/Mac.OS.X.Cocoa.Intel.tar.xz)
   * [Linux Release](https://github.com/L04DB4L4NC3R/covidcomm-ui/releases/download/v1.0/Linux.64.bit.tar.xz)
